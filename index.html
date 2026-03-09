@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>少しだけ、立ち止まる時間</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f7f1f3;
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      color: #4a3f3f;
+      line-height: 1.9;
+    }
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .card {
+      background: #ffffff;
+      border: 1px solid #eadde1;
+      border-radius: 24px;
+      padding: 42px 28px;
+      box-shadow: 0 8px 24px rgba(120, 90, 100, 0.05);
+    }
+    h1 {
+      font-size: 30px;
+      font-weight: 600;
+      margin: 0 0 24px;
+      color: #3f3135;
+      letter-spacing: 0.03em;
+    }
+    .lead {
+      font-size: 17px;
+      margin-bottom: 28px;
+      color: #56484d;
+    }
+    .subtext {
+      font-size: 15px;
+      color: #7a686e;
+      margin-bottom: 36px;
+    }
+    .question {
+      margin-top: 34px;
+    }
+    .question-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #403236;
+    }
+    .question-note {
+      font-size: 14px;
+      color: #8a7a7f;
+      margin-bottom: 12px;
+    }
+    textarea {
+      width: 100%;
+      min-height: 140px;
+      box-sizing: border-box;
+      border: 1px solid #e7d9de;
+      border-radius: 18px;
+      background: #fcf8f9;
+      padding: 18px;
+      font-size: 16px;
+      line-height: 1.8;
+      color: #4a3f3f;
+      outline: none;
+      resize: vertical;
+      transition: 0.2s ease;
+      font-family: inherit;
+    }
+    textarea:focus {
+      border-color: #d8a7b4;
+      background: #fffdfd;
+      box-shadow: 0 0 0 4px rgba(216, 167, 180, 0.12);
+    }
+    textarea::placeholder {
+      color: #b29ea5;
+    }
+    .movie-box {
+      margin-top: 44px;
+      padding: 24px;
+      background: #fbf6f7;
+      border: 1px solid #eadde1;
+      border-radius: 20px;
+      text-align: center;
+    }
+    .movie-text {
+      font-size: 16px;
+      color: #5a4a4f;
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    .button {
+      display: inline-block;
+      background: #d8a7b4;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.2s ease;
+    }
+    .button:hover {
+      background: #cc96a6;
+    }
+    .sent-msg {
+      display: none;
+      margin-top: 16px;
+      font-size: 14px;
+      color: #b29ea5;
+    }
+    @media screen and (max-width: 600px) {
+      .wrap { padding: 20px 14px 50px; }
+      .card { padding: 28px 18px; border-radius: 18px; }
+      h1 { font-size: 24px; }
+      .question-title { font-size: 18px; }
+      textarea { min-height: 120px; font-size: 15px; }
+      .button { display: block; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>少しだけ、立ち止まる時間</h1>
+
+      <p class="lead">
+        本を読みながら、<br>
+        心に残ったことが少しでもあったなら、<br>
+        その気持ちをここに置いてみてください。
+      </p>
+
+      <p class="subtext">
+        きれいに書こうとしなくて大丈夫です。<br>
+        まとまっていなくても大丈夫です。<br>
+        思いついたことを、そのまま書いてみてください。
+      </p>
+
+      <div class="question">
+        <div class="question-title">① 本を読みながら、心に残った場面はありましたか。</div>
+        <div class="question-note">思い出せる範囲で大丈夫です。</div>
+        <textarea id="scene" placeholder="少しでも心に残った場面があれば、書いてみてください。"></textarea>
+      </div>
+
+      <div class="question">
+        <div class="question-title">② その場面にふれたとき、どんな気持ちが浮かびましたか。</div>
+        <div class="question-note">似たような経験があれば、それも思い出してみてください。</div>
+        <textarea id="feeling" placeholder="モヤッとしたこと、悲しかったこと、言葉にしにくいことでも大丈夫です。"></textarea>
+      </div>
+
+      <div class="question">
+        <div class="question-title">③ そのとき、本当はどうしたかったでしょうか。</div>
+        <div class="question-note">はっきりしていなくても大丈夫です。</div>
+        <textarea id="wish" placeholder="本当は言いたかったこと、したかったことがあれば書いてみてください。"></textarea>
+      </div>
+
+      <div class="movie-box">
+        <p class="movie-text">
+          書いてみて、どうでしたか。<br>
+          このワークの意味を、スライドで少しだけお話ししています。
+        </p>
+        <button class="button" onclick="submitAndGo()">スライドを見る</button>
+        <p class="sent-msg" id="sentMsg">受け取りました。スライドへ移動します…</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 動画URLはここを変更してください
+    var VIDEO_URL = 'https://gamma.app/docs/4-kr5in0yj9kvx3q3';
+
+    var FORM_ID = '1FAIpQLSfpPxo6x3rEvQXMvTAqIuA6OlCotUSistQlWSM4gB0OsvyuaQ';
+    var ENTRY_SCENE   = 'entry.248929130';
+    var ENTRY_FEELING = 'entry.598004990';
+    var ENTRY_WISH    = 'entry.363586441';
+
+    function submitAndGo() {
+      var scene   = document.getElementById('scene').value.trim();
+      var feeling = document.getElementById('feeling').value.trim();
+      var wish    = document.getElementById('wish').value.trim();
+
+      var url = 'https://docs.google.com/forms/u/0/d/e/' + FORM_ID + '/formResponse';
+      var body = ENTRY_SCENE   + '=' + encodeURIComponent(scene)   + '&' +
+                 ENTRY_FEELING + '=' + encodeURIComponent(feeling) + '&' +
+                 ENTRY_WISH    + '=' + encodeURIComponent(wish);
+
+      fetch(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body
+      }).catch(function() {});
+
+      document.getElementById('sentMsg').style.display = 'block';
+      document.querySelector('.button').disabled = true;
+
+      setTimeout(function() {
+        window.location.href = VIDEO_URL;
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
